@@ -3,8 +3,7 @@ apply plugin: 'maven-publish'
 apply plugin: "com.gradle.plugin-publish"
 
 group = 'com.oskip'
-version = '0.1'
-
+version = '0.3'
 
 buildscript {
     repositories {
@@ -87,8 +86,6 @@ publishing {
         maven(MavenPublication) {
             groupId 'com.oskip'
             artifactId 'jooq'
-            version '0.1'
-
             from components.java
         }
     }
@@ -105,7 +102,6 @@ pluginBundle {
             id = 'com.oskip.jooq'
             displayName = 'Gradle Jooq plugin'
             tags = ['jooq', 'jooq-generator', 'generator']
-            version = '0.1'
         }
     }
 }
