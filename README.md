@@ -23,7 +23,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.oskip:jooq:0.1"
+        classpath "com.oskip:jooq:0.3"
         classpath 'org.jooq:jooq-codegen:3.8.5'
         classpath 'org.postgresql:postgresql:9.4-1201-jdbc41'
     }
