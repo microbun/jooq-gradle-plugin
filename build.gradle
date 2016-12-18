@@ -1,0 +1,112 @@
+apply plugin: 'groovy'
+apply plugin: 'maven-publish'
+apply plugin: "com.gradle.plugin-publish"
+
+group = 'com.oskip'
+version = '0.1'
+
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.gradle.publish:plugin-publish-plugin:0.9.7"
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "https://plugins.gradle.org/m2/" }
+}
+
+// Write the plugin's classpath to a file to share with the tests
+task createClasspathManifest {
+    def outputDir = file("$buildDir/$name")
+
+    inputs.files sourceSets.main.runtimeClasspath
+    outputs.dir outputDir
+
+    doLast {
+        outputDir.mkdirs()
+        file("$outputDir/plugin-classpath.txt").text = sourceSets.main.runtimeClasspath.join("\n")
+    }
+}
+
+dependencies {
+    compileOnly gradleApi()
+    compileOnly localGroovy()
+    compile 'org.jooq:jooq-codegen:3.8.5'
+//    compile
+
+    testCompile gradleTestKit()
+    testCompile gradleApi()
+    testCompile localGroovy()
+    testCompile 'commons-lang:commons-lang:2.6'
+    testCompile 'junit:junit:4.12'
+    testCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
+        exclude module: 'groovy-all'
+    }
+    testRuntime files(createClasspathManifest)
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.2'
+}
+
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task groovydocJar(type: Jar, dependsOn: groovydoc) {
+    classifier = 'groovydoc'
+    from groovydoc.destinationDir
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives groovydocJar
+    archives javadocJar
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId 'com.oskip'
+            artifactId 'jooq'
+            version '0.1'
+
+            from components.java
+        }
+    }
+}
+
+//plugin portal
+pluginBundle {
+    website = 'https://github.com/microbun/jooq-generator-gradle-plugin'
+    vcsUrl = 'https://github.com/microbun/jooq-generator-gradle-plugin'
+    description = 'jooq generator for gradle plugin'
+    plugins {
+
+        jooqPlugin {
+            id = 'com.oskip.jooq'
+            displayName = 'Gradle Jooq plugin'
+            tags = ['jooq', 'jooq-generator', 'generator']
+            version = '0.1'
+        }
+    }
+}
+

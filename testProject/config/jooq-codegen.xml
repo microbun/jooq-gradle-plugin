@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<configuration xmlns="http://www.jooq.org/xsd/jooq-codegen-3.8.0.xsd">
+    <!-- Configure the database connection here -->
+    <jdbc>
+        <driver>org.postgresql.Driver</driver>
+        <url>jdbc:postgresql://127.0.0.1:20189/test</url>
+        <user>test</user>
+        <password>test</password>
+    </jdbc>
+
+    <generator>
+        <database>
+            <name>org.jooq.util.postgres.PostgresDatabase</name>
+            <includes>.*</includes>
+            <inputSchema>public</inputSchema>
+        </database>
+        <target>
+            <packageName>com.inmind.automind.kpi.jooq</packageName>
+        </target>
+    </generator>
+</configuration>

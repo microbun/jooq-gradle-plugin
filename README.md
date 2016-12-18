@@ -1,1 +1,1 @@
-# jooq-generator-gradle-plugin
+# jooq-gradle-plugin
