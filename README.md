@@ -37,6 +37,7 @@ dependencies {
 
 jooq {
     isGenerate = true
+    config = 'confing/generate-config.xml'
 }
 
 idea {
