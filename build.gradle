@@ -2,8 +2,8 @@ apply plugin: 'groovy'
 apply plugin: 'maven-publish'
 apply plugin: "com.gradle.plugin-publish"
 
-group = 'com.oskip'
-version = '0.3.1'
+group = 'com.oskip.jooq'
+version = '0.3.2'
 
 buildscript {
     repositories {
@@ -84,8 +84,8 @@ artifacts {
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId 'com.oskip'
-            artifactId 'jooq-gradle-plugin'
+//            groupId 'com.oskip.jooq'
+//            artifactId 'jooq-gradle-plugin'
             from components.java
         }
     }
