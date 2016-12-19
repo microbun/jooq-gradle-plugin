@@ -22,7 +22,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "gradle.plugin.com.oskip:jooq-gradle-plugin:0.3"
+        classpath "gradle.plugin.com.oskip:jooq-gradle-plugin:0.3.2"
         classpath 'org.jooq:jooq-codegen:3.8.5'
         classpath 'org.postgresql:postgresql:9.4-1201-jdbc41'
     }
