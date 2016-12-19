@@ -24,7 +24,7 @@ class JQGeneratorPlugin implements Plugin<Project> {
 
     void createExtensions() {
         project.extensions.create(JOOQ_EXTENSION_NAME, JQGeneratorPluginExtension)
-        project.jooq.generatedSrc = "$project.buildDir/generated/source/jooq/java/main"
+        project.jooq.generatedSrc = "$project.buildDir/generated/source/jooq/main/java"
     }
 
     void bindTask() {

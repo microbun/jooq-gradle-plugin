@@ -3,7 +3,7 @@ apply plugin: 'maven-publish'
 apply plugin: "com.gradle.plugin-publish"
 
 group = 'com.oskip'
-version = '0.3'
+version = '0.3.1'
 
 buildscript {
     repositories {
@@ -85,7 +85,7 @@ publishing {
     publications {
         maven(MavenPublication) {
             groupId 'com.oskip'
-            artifactId 'jooq'
+            artifactId 'jooq-gradle-plugin'
             from components.java
         }
     }
@@ -93,8 +93,8 @@ publishing {
 
 //plugin portal
 pluginBundle {
-    website = 'https://github.com/microbun/jooq-generator-gradle-plugin'
-    vcsUrl = 'https://github.com/microbun/jooq-generator-gradle-plugin'
+    website = 'https://github.com/microbun/jooq-gradle-plugin'
+    vcsUrl = 'https://github.com/microbun/jooq-gradle-plugin'
     description = 'jooq generator for gradle plugin'
     plugins {
 

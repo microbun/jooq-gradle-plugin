@@ -37,7 +37,7 @@ class JQGeneratorTask extends DefaultTask {
                 target.directory = generatedSrc
                 // compile source dir
                 File outputDir = new File(generatedSrc)
-                compileTask.source = outputDir
+                compileTask.source outputDir
                 GenerationTool.generate(configuration);
             } else {
                 logger.error "can not find file:{$configurationXml.path}"

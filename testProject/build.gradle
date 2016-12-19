@@ -1,14 +1,11 @@
-group 'com.inmind'
+group 'com.oskip'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: "com.oskip.jooq"
 apply plugin: 'idea'
-sourceCompatibility = 1.8
-
 
 repositories {
-    mavenLocal()
     mavenCentral()
 }
 
@@ -16,16 +13,13 @@ buildscript {
 
     repositories {
         mavenLocal()
-        mavenCentral()
-
     }
 
     dependencies {
-        classpath "com.oskip:jooq:0.1"
+        classpath "gradle.plugin.com.oskip:jooq-gradle-plugin:0.3"
         classpath 'org.jooq:jooq-codegen:3.8.5'
         classpath 'org.postgresql:postgresql:9.4-1201-jdbc41'
     }
-
 }
 
 dependencies {
@@ -35,10 +29,12 @@ dependencies {
 
 jooq {
     isGenerate = true
+    config = "$project.projectDir/config/generate-config.xml"
 }
 
 idea {
     module {
         sourceDirs += file("$jooq.generatedSrc");
+
     }
 }
