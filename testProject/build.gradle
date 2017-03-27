@@ -12,13 +12,15 @@ repositories {
 buildscript {
 
     repositories {
-        mavenLocal()
+        maven {
+            url "http://nexus.jihui.in/content/groups/public"
+        }
     }
 
     dependencies {
-        classpath "gradle.plugin.com.oskip:jooq-gradle-plugin:0.3"
-        classpath 'org.jooq:jooq-codegen:3.8.5'
-        classpath 'org.postgresql:postgresql:9.4-1201-jdbc41'
+        classpath "com.oskip.jooq:jooq-gradle-plugin:0.3.4"
+//        classpath "com.oskip:jooq-gradle-plugin:0.3.4"
+        classpath 'mysql:mysql-connector-java:5.1.40'
     }
 }
 

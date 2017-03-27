@@ -6,9 +6,6 @@ import org.gradle.api.tasks.TaskAction
 import org.jooq.util.GenerationTool
 import org.jooq.util.jaxb.Configuration
 import org.jooq.util.jaxb.Target
-
-import javax.xml.bind.JAXB
-
 /**
  * @author Microbun on 16/11/12.
  */
@@ -26,9 +23,11 @@ class JQGeneratorTask extends DefaultTask {
             }
             def generatedSrc = project.jooq.generatedSrc
             File configurationXml = new File(project.jooq.config)
-            Configuration configuration;
+            Configuration configuration
             if (configurationXml.exists()) {
-                configuration = JAXB.unmarshal(configurationXml, Configuration.class);
+                configuration = GenerationTool.load(new FileInputStream(configurationXml))
+
+//                configuration = JAXB.unmarshal(configurationXml, Configuration.class);
                 def target = configuration.generator.target
                 if (!target) {
                     target = new Target()

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<configuration>
+    <!-- Configure the database connection here -->
+    <jdbc>
+        <driver>com.mysql.jdbc.Driver</driver>
+        <url>jdbc:mysql://172.16.52.129:20139/migration?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;useSSL=false</url>
+        <user>migration</user>
+        <password>migration@123</password>
+    </jdbc>
+
+    <generator>
+        <database>
+            <name>org.jooq.util.mysql.MySQLDatabase</name>
+            <includes>.*</includes>
+            <inputSchema>migration</inputSchema>
+        </database>
+        <target>
+            <directory>.</directory>
+            <encoding>UTF-8</encoding>
+            <packageName>com.higgs.dal.automind2.jooq.generated</packageName>
+        </target>
+    </generator>
+</configuration>

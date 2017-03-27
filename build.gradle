@@ -1,5 +1,6 @@
 apply plugin: 'groovy'
 apply plugin: 'maven-publish'
+apply plugin: 'maven'
 apply plugin: "com.gradle.plugin-publish"
 
 group = 'com.oskip.jooq'
@@ -41,8 +42,6 @@ dependencies {
     compileOnly gradleApi()
     compileOnly localGroovy()
     compile 'org.jooq:jooq-codegen:3.8.5'
-//    compile
-
     testCompile gradleTestKit()
     testCompile gradleApi()
     testCompile localGroovy()
@@ -91,6 +90,20 @@ publishing {
     }
 }
 
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: 'http://nexus.jihui.in/content/repositories/secondparty') {
+                authentication(userName: 'deployment', password: '123456');
+            }
+            snapshotRepository(url: 'http://nexus.jihui.in/content/repositories/secondparty-snapshots') {
+                authentication(userName: 'deployment', password: '123456');
+            }
+        }
+    }
+}
+
 //plugin portal
 pluginBundle {
     website = 'https://github.com/microbun/jooq-gradle-plugin'
@@ -99,7 +112,6 @@ pluginBundle {
     plugins {
 
         jooqPlugin {
-            id = 'com.oskip.jooq'
             displayName = 'Gradle Jooq plugin'
             tags = ['jooq', 'jooq-generator', 'generator']
         }
